@@ -15,15 +15,15 @@ import lombok.Data;
 @Entity(name = "lineup")
 @Table(name = "lineup", schema = AppConfig.SCHEMA)
 public class Lineup {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-	@Column(name = "hero_id")
-	private Long heroId;
+    @Column(name = "hero_id")
+    private Long heroId;
 
-	@Column(name = "group_id")
-	private Long groupId;
+    @Column(name = "group_id")
+    private Long groupId;
 
 }

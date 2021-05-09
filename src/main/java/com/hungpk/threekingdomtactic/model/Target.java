@@ -1,14 +1,11 @@
 package com.hungpk.threekingdomtactic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.hungpk.threekingdomtactic.config.AppConfig;
 
+import com.hungpk.threekingdomtactic.enums.QualityEnum;
+import com.hungpk.threekingdomtactic.enums.converter.QualityEnumConverter;
 import lombok.Data;
 
 @Data

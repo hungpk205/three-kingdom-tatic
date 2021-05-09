@@ -15,15 +15,15 @@ import lombok.Data;
 @Entity(name = "affinity_hero")
 @Table(name = "affinity_hero", schema = AppConfig.SCHEMA)
 public class AffinityHero {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-	@Column(name = "hero_id")
-	private Long heroId;
+    @Column(name = "hero_id")
+    private Long heroId;
 
-	@Column(name = "affinity_id")
-	private Long affinityId;
+    @Column(name = "affinity_id")
+    private Long affinityId;
 
 }

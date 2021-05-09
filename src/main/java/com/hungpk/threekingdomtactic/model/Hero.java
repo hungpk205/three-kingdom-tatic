@@ -1,11 +1,6 @@
 package com.hungpk.threekingdomtactic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.hungpk.threekingdomtactic.config.AppConfig;
 
@@ -19,6 +14,12 @@ public class Hero {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+
+	@Column(name= "country_id")
+	private Long countryId;
+
+	@Column(name = "season_id")
+	private Long seasonId;
 
 	@Column(name = "name")
 	private String name;
@@ -38,9 +39,18 @@ public class Hero {
 	@Column(name = "info")
 	private String info;
 
-	@Column(name = "offical_tactic_id")
-	private Long officalTacticId;
+	@Column(name = "official_tactic_id")
+	private Long officialTacticId;
 
 	@Column(name = "inherit_tactic_id")
 	private Long inheritTacticId;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "official_tactic_id", nullable = false, insertable = false, updatable = false)
+	private Tactic officialTactic;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "inherit_tactic_id", nullable = false, insertable = false, updatable = false)
+	private Tactic inheritTactic;
+
 }

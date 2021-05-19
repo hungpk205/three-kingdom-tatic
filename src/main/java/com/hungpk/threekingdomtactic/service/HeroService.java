@@ -4,6 +4,7 @@ import com.hungpk.threekingdomtactic.config.exception.SystemException;
 import com.hungpk.threekingdomtactic.model.Country;
 import com.hungpk.threekingdomtactic.model.Hero;
 import com.hungpk.threekingdomtactic.payload.request.CountryRequest;
+import com.hungpk.threekingdomtactic.payload.request.HeroRequest;
 import com.hungpk.threekingdomtactic.repository.CountryRepository;
 import com.hungpk.threekingdomtactic.repository.HeroRepository;
 import com.hungpk.threekingdomtactic.utils.MessageUtils;
@@ -29,12 +30,12 @@ public class HeroService {
         return heroRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
     }
 
-    public void create(CountryRequest body) {
+    public void create(HeroRequest body) {
         var entity = modelMapper.map(body, Hero.class);
         heroRepository.save(entity);
     }
 
-    public void update(Long id, CountryRequest body) {
+    public void update(Long id, HeroRequest body) {
         var entity = heroRepository.findById(id).get();
         entity.setName(body.getName());
         heroRepository.save(entity);

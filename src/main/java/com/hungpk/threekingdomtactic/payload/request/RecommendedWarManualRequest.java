@@ -5,7 +5,7 @@ import com.hungpk.threekingdomtactic.dto.WarManualDto;
 import lombok.Data;
 
 @Data
-public class RecommendWarManualRequest {
+public class RecommendedWarManualRequest {
     private HeroDto name;
     private WarManualDto warManual;
 }

@@ -26,7 +26,7 @@ public class HeroStat {
     @Column(name = "statId")
     private Long statId;
 
-    @Column(name = "quality")
-    private Float gaint;
+    @Column(name = "increase")
+    private Float increase;
 
 }

@@ -27,7 +27,7 @@ public class SeasonService {
     }
 
     public Season findById(Long id) {
-        return seasonRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.CountryMsg.NOT_FOUND));
+        return seasonRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
     }
 
     public void create(SeasonRequest body) {

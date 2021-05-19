@@ -28,7 +28,7 @@ public class CountryService {
     }
 
     public Country findById(Long id) {
-        return countryRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.CountryMsg.NOT_FOUND));
+        return countryRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
     }
 
     public void create(CountryRequest body) {

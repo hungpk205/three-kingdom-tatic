@@ -26,4 +26,7 @@ public class Country {
 	@Column(name = "name_vn")
 	private String nameVn;
 
+	@Column(name = "info")
+	private String info;
+
 }

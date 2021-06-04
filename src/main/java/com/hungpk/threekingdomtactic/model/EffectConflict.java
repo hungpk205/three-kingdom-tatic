@@ -1,15 +1,12 @@
 package com.hungpk.threekingdomtactic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.hungpk.threekingdomtactic.config.AppConfig;
 
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity(name = "effect_conflict")
@@ -25,5 +22,8 @@ public class EffectConflict {
 
     @Column(name = "info")
     private String info;
+
+    @OneToMany(mappedBy = "effectConflict")
+    private List<TacticEffectConflict> tacticEffectConflicts;
 
 }

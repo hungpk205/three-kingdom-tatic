@@ -1,6 +1,5 @@
 package com.hungpk.threekingdomtactic.controllers;
 
-import com.hungpk.threekingdomtactic.payload.request.AffinityRequest;
 import com.hungpk.threekingdomtactic.payload.request.TargetRequest;
 import com.hungpk.threekingdomtactic.service.TargetService;
 import com.hungpk.threekingdomtactic.utils.Response;

@@ -9,6 +9,9 @@ import javax.persistence.Table;
 
 import com.hungpk.threekingdomtactic.config.AppConfig;
 
+import com.hungpk.threekingdomtactic.dto.EffectDto;
+import com.hungpk.threekingdomtactic.dto.TargetDto;
+import com.hungpk.threekingdomtactic.dto.WarManualDto;
 import lombok.Data;
 
 @Data
@@ -28,4 +31,13 @@ public class WarManual {
 
 	@Column(name = "war_manual_id")
 	private Long warManualId;
+
+	@Column(name = "effect_id")
+	private Long effectId;
+
+	@Column(name = "target_id")
+	private Long target;
+
+	@Column(name = "change_to_trigger")
+	private Double changeToTrigger;
 }

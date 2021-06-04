@@ -56,6 +56,6 @@ public class Tactic {
     @OneToMany(mappedBy = "inheritTactic")
     private List<Hero> inheritHeroes;
 
-    @OneToMany(mappedBy = "tacticEffectConflicts")
+    @OneToMany(mappedBy = "tactic")
     private List<TacticEffectConflict> tacticEffectConflicts;
 }

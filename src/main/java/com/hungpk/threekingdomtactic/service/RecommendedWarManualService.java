@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class RecommendWarManualService {
+public class RecommendedWarManualService {
 
     private final RecommendedWarManualRepository recommendedWarManualRepository;
 

@@ -15,5 +15,4 @@ public class TacticDto {
     private QualityEnum quality;
     private TacticTypeEnum tacticType;
     private Long changeToTrigger;
-    private EffectConflictDto effectConflict;
 }

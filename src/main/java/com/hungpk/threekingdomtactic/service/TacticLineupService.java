@@ -33,7 +33,7 @@ public class TacticLineupService {
         tacticLineupRepository.save(entity);
     }
 
-    public void update(Long id, AffinityRequest body) {
+    public void update(Long id, TacticLineupRequest body) {
         var entity = tacticLineupRepository.findById(id).get();
         tacticLineupRepository.save(entity);
     }

@@ -55,4 +55,7 @@ public class Tactic {
 
     @OneToMany(mappedBy = "inheritTactic")
     private List<Hero> inheritHeroes;
+
+    @OneToMany(mappedBy = "tacticEffectConflicts")
+    private List<TacticEffectConflict> tacticEffectConflicts;
 }

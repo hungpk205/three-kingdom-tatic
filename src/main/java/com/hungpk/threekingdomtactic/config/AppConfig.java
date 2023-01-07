@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
-    public static final String SCHEMA = "three_kingdom_tactic";
+    public static final String SCHEMA = "public";
 
     @Bean
     public ModelMapper modelMapper() {

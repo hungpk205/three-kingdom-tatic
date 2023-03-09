@@ -1,8 +1,11 @@
 package com.hungpk.threekingdomtactic.service;
 
+import com.hungpk.threekingdomtactic.config.exception.NotFoundException;
 import com.hungpk.threekingdomtactic.config.exception.SystemException;
 import com.hungpk.threekingdomtactic.model.Lineup;
 import com.hungpk.threekingdomtactic.payload.request.LineupRequest;
+import com.hungpk.threekingdomtactic.repository.GroupRepository;
+import com.hungpk.threekingdomtactic.repository.HeroRepository;
 import com.hungpk.threekingdomtactic.repository.LineupRepository;
 import com.hungpk.threekingdomtactic.utils.MessageUtils;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +19,8 @@ import java.util.List;
 public class LineupService {
 
     private final LineupRepository lineupRepository;
+    private final HeroRepository heroRepository;
+    private final GroupRepository groupRepository;
 
     private final ModelMapper modelMapper;
 
@@ -28,12 +33,25 @@ public class LineupService {
     }
 
     public void create(LineupRequest body) {
+        var hero = heroRepository.findById(body.getHero().getId())
+                .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        var group = groupRepository.findById(body.getGroup().getId())
+                .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
         var entity = modelMapper.map(body, Lineup.class);
+        entity.setHero(hero);
+        entity.setGroup(group);
         lineupRepository.save(entity);
     }
 
     public void update(Long id, LineupRequest body) {
-        var entity = lineupRepository.findById(id).get();
+        var entity = lineupRepository.findById(id)
+                        .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        var hero = heroRepository.findById(body.getHero().getId())
+                .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        var group = groupRepository.findById(body.getGroup().getId())
+                .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        entity.setHero(hero);
+        entity.setGroup(group);
         lineupRepository.save(entity);
     }
 

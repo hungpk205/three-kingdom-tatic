@@ -6,6 +6,7 @@ import com.hungpk.threekingdomtactic.config.AppConfig;
 import com.hungpk.threekingdomtactic.enums.QualityEnum;
 import com.hungpk.threekingdomtactic.enums.TacticTypeEnum;
 
+import com.hungpk.threekingdomtactic.enums.TargetTypeEnum;
 import com.hungpk.threekingdomtactic.enums.converter.QualityEnumConverter;
 import com.hungpk.threekingdomtactic.enums.converter.TacticTypeEnumConverter;
 import lombok.Data;
@@ -21,12 +22,6 @@ public class Tactic {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "effect_id")
-    private Long effectId;
-
-    @Column(name = "target_id")
-    private Long targetId;
-
     @Column(name = "name")
     private String name;
 
@@ -39,16 +34,25 @@ public class Tactic {
     @Column(name = "slot")
     private Integer slot;
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     @Column(name = "quality")
 //    @Convert(converter = QualityEnumConverter.class)
     private QualityEnum quality;
 
-    @Column(name = "type")
+    @Column(name = "tactic_type")
 //    @Convert(converter = TacticTypeEnumConverter.class)
     private TacticTypeEnum tacticType;
 
+    @Column(name = "target_type")
+    private TargetTypeEnum targetType;
+
     @Column(name = "change_to_trigger")
     private Long changeToTrigger;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Effect effect;
 
     @OneToMany(mappedBy = "officialTactic")
     private List<Hero> heroes;

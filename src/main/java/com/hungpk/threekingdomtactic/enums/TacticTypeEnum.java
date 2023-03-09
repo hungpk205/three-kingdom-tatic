@@ -1,12 +1,14 @@
 package com.hungpk.threekingdomtactic.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Arrays;
 import java.util.Map;
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum TacticTypeEnum implements CodeEnum {
 	COMMAND("1","COMMAND", 1), ACTIVE("2", "ACTIVE", 2),
 	STRIKE("3","STRIKE", 3), PASSIVE("4","PASSIVE", 4),
@@ -59,12 +61,12 @@ public enum TacticTypeEnum implements CodeEnum {
 
 	@Override
 	public String getValue() {
-		return null;
+		return value;
 	}
 
 	@Override
 	public String getDisplay() {
-		return null;
+		return display;
 	}
 
 	@Override

@@ -6,12 +6,8 @@ import java.util.List;
 
 @Data
 public class HeroStatRequest {
+    private Long id;
     private Long heroId;
-    private List<HeroStatInner> heroStat;
-
-    @Data
-    public static class HeroStatInner {
-        private Float increase;
-        private Long statId;
-    }
+    private Float increase;
+    private Long statId;
 }

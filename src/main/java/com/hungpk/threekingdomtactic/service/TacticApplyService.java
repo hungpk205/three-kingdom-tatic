@@ -33,7 +33,10 @@ public class TacticApplyService {
     }
 
     public void update(Long id, TacticApplyRequest body) {
-        var entity = tacticApplyRepository.findById(id).get();
+        var entity = tacticApplyRepository.findById(id)
+                .orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
+        entity.setTacticId(body.getTactic().getId());
+        entity.setTroopId(body.getTroop().getId());
         tacticApplyRepository.save(entity);
     }
 

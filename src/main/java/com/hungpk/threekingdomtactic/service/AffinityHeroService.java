@@ -35,7 +35,10 @@ public class AffinityHeroService {
     }
 
     public void update(Long id, AffinityHeroRequest body) {
-        var entity = affinityHeroRepository.findById(id).get();
+        var entity = affinityHeroRepository.findById(id)
+                .orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
+        entity.setHeroId(body.getHero().getId());
+        entity.setAffinityId(body.getAffinity().getId());
         affinityHeroRepository.save(entity);
     }
 

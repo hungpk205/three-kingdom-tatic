@@ -1,11 +1,6 @@
 package com.hungpk.threekingdomtactic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.hungpk.threekingdomtactic.config.AppConfig;
 
@@ -20,10 +15,16 @@ public class ReplacementOfficer {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "lineup_id")
-    private Long lineupId;
+//    @Column(name = "lineup_id")
+//    private Long lineupId;
+//
+//    @Column(name = "hero_id")
+//    private Long heroId;
 
-    @Column(name = "hero_id")
-    private Long heroId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Lineup lineup;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Hero hero;
 
 }

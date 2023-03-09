@@ -1,24 +1,33 @@
-package com.hungpk.threekingdomtactic.payload.request;
+package com.hungpk.threekingdomtactic.payload.response.tactics;
 
-import com.hungpk.threekingdomtactic.dto.EffectConflictDto;
-import com.hungpk.threekingdomtactic.dto.EffectDto;
-import com.hungpk.threekingdomtactic.dto.TargetDto;
 import com.hungpk.threekingdomtactic.enums.QualityEnum;
 import com.hungpk.threekingdomtactic.enums.TacticTypeEnum;
 import com.hungpk.threekingdomtactic.enums.TargetTypeEnum;
+import com.hungpk.threekingdomtactic.payload.response.effects.EffectResponse;
 import lombok.Data;
 
 @Data
-public class TacticRequest {
+public class TacticResponse {
+    private Long id;
+
     private String name;
+
     private String info;
+
     private String maxLvInfo;
-    private EffectDto effect;
+
+    private Integer slot;
+
+    private Integer quantity;
+
     private QualityEnum quality;
+
     private TacticTypeEnum tacticType;
+
     private TargetTypeEnum targetType;
+
     private Long changeToTrigger;
-    private EffectConflictDto effectConflict;
-    private int slot;
-    private int quantity;
+
+    private EffectResponse effect;
+
 }

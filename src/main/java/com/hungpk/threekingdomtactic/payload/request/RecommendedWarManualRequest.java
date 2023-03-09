@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class RecommendedWarManualRequest {
-    private HeroDto name;
+    private HeroDto hero;
     private WarManualDto warManual;
 }

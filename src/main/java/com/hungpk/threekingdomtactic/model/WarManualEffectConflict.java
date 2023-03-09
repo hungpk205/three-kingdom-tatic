@@ -14,9 +14,17 @@ public class WarManualEffectConflict {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "war_manual_id")
-    private Long warManualId;
+//    @Column(name = "war_manual_id")
+//    private Long warManualId;
+//
+//    @Column(name = "effect_conflict_id")
+//    private Long effectConflictId;
 
-    @Column(name = "effect_conflict_id")
-    private Long effectConflictId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private WarManual warManual;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private EffectConflict effectConflict;
+
+
 }

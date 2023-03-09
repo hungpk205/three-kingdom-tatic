@@ -1,45 +1,45 @@
 package com.hungpk.threekingdomtactic.controllers;
 
-import com.hungpk.threekingdomtactic.payload.request.TargetRequest;
-import com.hungpk.threekingdomtactic.service.TargetService;
+import com.hungpk.threekingdomtactic.payload.request.WarManualApplyRequest;
+import com.hungpk.threekingdomtactic.service.WarManualApplyService;
 import com.hungpk.threekingdomtactic.utils.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/targets")
-public class TargetController {
+@RequestMapping("/api/war-manual-applies")
+public class WarManualApplyController {
 
-    private final TargetService targetService;
+    private final WarManualApplyService warManualApplyService;
 
     @GetMapping
     public Response<Object> getAll() {
-        var entities = targetService.getAll();
+        var entities = warManualApplyService.getAll();
         return Response.ok().setPayload(entities);
     }
 
     @GetMapping("/{id}")
     public Response<Object> findOne(@PathVariable("id") Long id) {
-        var entity = targetService.findById(id);
+        var entity = warManualApplyService.findById(id);
         return Response.ok().setPayload(entity);
     }
 
     @PostMapping
-    public Response<Object> create(@RequestBody TargetRequest body) {
-        targetService.create(body);
+    public Response<Object> create(@RequestBody WarManualApplyRequest body) {
+        warManualApplyService.create(body);
         return Response.ok();
     }
 
     @PutMapping("/{id}")
-    public Response<Object> update(@PathVariable("id") Long id, @RequestBody TargetRequest body) {
-        targetService.update(id, body);
+    public Response<Object> update(@PathVariable("id") Long id, @RequestBody WarManualApplyRequest body) {
+        warManualApplyService.update(id, body);
         return Response.ok();
     }
 
     @DeleteMapping("/{id}")
     public Response<Object> delete(@PathVariable("id") Long id) {
-        targetService.delete(id);
+        warManualApplyService.delete(id);
         return Response.ok();
     }
 }

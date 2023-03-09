@@ -1,11 +1,6 @@
 package com.hungpk.threekingdomtactic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.hungpk.threekingdomtactic.config.AppConfig;
 
@@ -20,10 +15,16 @@ public class TacticLineup {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "lineup_id")
-    private Long lineupId;
+//    @Column(name = "lineup_id")
+//    private Long lineupId;
+//
+//    @Column(name = "tactic_id")
+//    private Long tacticId;
 
-    @Column(name = "tactic_id")
-    private Long tacticId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Lineup lineup;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Tactic tactic;
 
 }

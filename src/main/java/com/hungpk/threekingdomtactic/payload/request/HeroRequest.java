@@ -10,11 +10,11 @@ public class HeroRequest {
     private String name;
     private String nameVn;
     private Integer cost;
-    private Integer start;
+    private Integer star;
     private String image;
     private String info;
-    private TacticDto officialTacticId;
-    private TacticDto inheritTacticId;
+    private TacticDto officialTactic;
+    private TacticDto inheritTactic;
     private CountryDto country;
     private SeasonDto season;
 }

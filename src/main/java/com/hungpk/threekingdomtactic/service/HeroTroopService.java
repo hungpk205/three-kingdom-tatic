@@ -33,7 +33,11 @@ public class HeroTroopService {
     }
 
     public void update(Long id, HeroTroopRequest body) {
-        var entity = heroTroopRepository.findById(id).get();
+        var entity = heroTroopRepository.findById(id)
+                .orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
+        entity.setQuality(body.getQuality());
+        entity.setHeroId(body.getHero().getId());
+        entity.setTroopId(body.getTroop().getId());
         heroTroopRepository.save(entity);
     }
 

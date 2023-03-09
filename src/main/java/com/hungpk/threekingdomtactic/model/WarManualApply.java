@@ -14,9 +14,15 @@ public class WarManualApply {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "war_manual_id")
-    private Long warManualId;
+//    @Column(name = "war_manual_id")
+//    private Long warManualId;
+//
+//    @Column(name = "troop_id")
+//    private Long troopId;
 
-    @Column(name = "troop_id")
-    private Long troopId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private WarManual warManual;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Troop troop;
 }

@@ -1,11 +1,6 @@
 package com.hungpk.threekingdomtactic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.hungpk.threekingdomtactic.config.AppConfig;
 
@@ -20,13 +15,16 @@ public class HeroStat {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "hero_id")
-    private Long heroId;
-
-    @Column(name = "statId")
-    private Long statId;
-
     @Column(name = "increase")
     private Float increase;
+
+    @Column(name = "base_stat")
+    private Integer baseStat;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Hero hero;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Stat stat;
 
 }

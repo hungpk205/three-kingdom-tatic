@@ -1,6 +1,7 @@
 package com.hungpk.threekingdomtactic.controllers;
 
-import com.hungpk.threekingdomtactic.payload.request.AffinityHeroRequest;
+import com.hungpk.threekingdomtactic.payload.request.affinityhero.AffinityHeroCreateRequest;
+import com.hungpk.threekingdomtactic.payload.request.affinityhero.AffinityHeroUpdateRequest;
 import com.hungpk.threekingdomtactic.service.AffinityHeroService;
 import com.hungpk.threekingdomtactic.utils.Response;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +27,13 @@ public class AffinityHeroController {
     }
 
     @PostMapping
-    public Response<Object> create(@RequestBody AffinityHeroRequest body) {
+    public Response<Object> create(@RequestBody AffinityHeroCreateRequest body) {
         affinityHeroService.create(body);
         return Response.ok();
     }
 
     @PutMapping("/{id}")
-    public Response<Object> update(@PathVariable("id") Long id, @RequestBody AffinityHeroRequest body) {
+    public Response<Object> update(@PathVariable("id") Long id, @RequestBody AffinityHeroUpdateRequest body) {
         affinityHeroService.update(id, body);
         return Response.ok();
     }

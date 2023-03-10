@@ -30,7 +30,8 @@ public class TacticService {
     }
 
     public TacticResponse findById(Long id) {
-        var entity = tacticRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
+        var entity = tacticRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
         return modelMapper.map(entity, TacticResponse.class);
     }
 
@@ -45,7 +46,8 @@ public class TacticService {
     public void update(Long id, TacticRequest body) {
         var entity = tacticRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
-        modelMapper.map(body, Tactic.class);
+        entity = modelMapper.map(body, Tactic.class);
+        entity.setId(id);
         tacticRepository.save(entity);
     }
 

@@ -1,5 +1,6 @@
 package com.hungpk.threekingdomtactic.service;
 
+import com.hungpk.threekingdomtactic.config.exception.NotFoundException;
 import com.hungpk.threekingdomtactic.config.exception.SystemException;
 import com.hungpk.threekingdomtactic.model.Affinity;
 import com.hungpk.threekingdomtactic.payload.request.AffinityRequest;
@@ -24,7 +25,7 @@ public class AffinityService {
     }
 
     public Affinity findById(Long id) {
-        return affinityRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
+        return affinityRepository.findById(id).orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
     }
 
     public void create(AffinityRequest body) {
@@ -33,8 +34,10 @@ public class AffinityService {
     }
 
     public void update(Long id, AffinityRequest body) {
-        var entity = affinityRepository.findById(id).get();
-        entity.setName(body.getName());
+        var entity = affinityRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        entity = modelMapper.map(body, Affinity.class);
+        entity.setId(id);
         affinityRepository.save(entity);
     }
 

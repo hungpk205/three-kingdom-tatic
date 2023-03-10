@@ -15,12 +15,6 @@ public class Hero {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name= "country_id")
-	private Long countryId;
-
-	@Column(name = "season_id")
-	private Long seasonId;
-
 	@Column(name = "name")
 	private String name;
 
@@ -39,18 +33,26 @@ public class Hero {
 	@Column(name = "info")
 	private String info;
 
-	@Column(name = "official_tactic_id")
-	private Long officialTacticId;
-
-	@Column(name = "inherit_tactic_id")
-	private Long inheritTacticId;
+//	@Column(name = "official_tactic_id")
+//	private Long officialTacticId;
+//
+//	@Column(name = "inherit_tactic_id")
+//	private Long inheritTacticId;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "official_tactic_id", nullable = false, insertable = false, updatable = false)
+//	@JoinColumn(name = "official_tactic_id", nullable = false, insertable = false, updatable = false)
 	private Tactic officialTactic;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "inherit_tactic_id", nullable = false, insertable = false, updatable = false)
+//	@JoinColumn(name = "inherit_tactic_id", nullable = false, insertable = false, updatable = false)
 	private Tactic inheritTactic;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Country country;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Season season;
+
+
 
 }

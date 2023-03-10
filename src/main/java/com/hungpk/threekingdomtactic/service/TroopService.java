@@ -1,8 +1,10 @@
 package com.hungpk.threekingdomtactic.service;
 
+import com.hungpk.threekingdomtactic.config.exception.NotFoundException;
 import com.hungpk.threekingdomtactic.config.exception.SystemException;
 import com.hungpk.threekingdomtactic.model.Troop;
 import com.hungpk.threekingdomtactic.payload.request.TroopRequest;
+import com.hungpk.threekingdomtactic.payload.response.troop.TroopResponse;
 import com.hungpk.threekingdomtactic.repository.TroopRepository;
 import com.hungpk.threekingdomtactic.utils.MessageUtils;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,12 +22,15 @@ public class TroopService {
 
     private final ModelMapper modelMapper;
 
-    public List<Troop> getAll() {
-        return troopRepository.findAll();
+    public List<TroopResponse> getAll() {
+        var entities = troopRepository.findAll();
+        return entities.stream().map(e -> modelMapper.map(e, TroopResponse.class)).collect(Collectors.toList());
     }
 
-    public Troop findById(Long id) {
-        return troopRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
+    public TroopResponse findById(Long id) {
+        var entity = troopRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        return modelMapper.map(entity, TroopResponse.class);
     }
 
     public void create(TroopRequest body) {
@@ -33,7 +39,10 @@ public class TroopService {
     }
 
     public void update(Long id, TroopRequest body) {
-        var entity = troopRepository.findById(id).get();
+        var entity = troopRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        entity = modelMapper.map(body, Troop.class);
+        entity.setId(id);
         troopRepository.save(entity);
     }
 

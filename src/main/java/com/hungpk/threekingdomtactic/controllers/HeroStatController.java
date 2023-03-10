@@ -29,13 +29,14 @@ public class HeroStatController {
 
     @PostMapping
     public Response<Object> create(@PathVariable Long heroId, @RequestBody List<HeroStatRequest> body) {
-        heroStatService.create(body);
+        heroStatService.create(heroId, body);
         return Response.ok();
     }
 
     @PutMapping("/{id}")
-    public Response<Object> update(@PathVariable("id") Long id, @RequestBody HeroStatRequest body) {
-        heroStatService.update(id, body);
+    public Response<Object> update(@PathVariable("heroId") Long heroId, @PathVariable("id") Long id,
+                                   @RequestBody HeroStatRequest body) {
+        heroStatService.update(heroId, id, body);
         return Response.ok();
     }
 

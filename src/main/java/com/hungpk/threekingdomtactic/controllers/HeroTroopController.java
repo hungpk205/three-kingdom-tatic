@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/hero-troops")
+@RequestMapping("/api/heroes/{heroId}/troops")
 public class HeroTroopController {
 
     private final HeroTroopService heroTroopService;
 
     @GetMapping
-    public Response<Object> getAll() {
+    public Response<Object> getAllByHeroId(@PathVariable Long heroId) {
         var entities = heroTroopService.getAll();
         return Response.ok().setPayload(entities);
     }

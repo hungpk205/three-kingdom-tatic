@@ -1,9 +1,9 @@
 package com.hungpk.threekingdomtactic.service;
 
-import com.hungpk.threekingdomtactic.config.exception.SystemException;
+import com.hungpk.threekingdomtactic.config.exception.NotFoundException;
 import com.hungpk.threekingdomtactic.model.Stat;
-import com.hungpk.threekingdomtactic.payload.request.CountryRequest;
 import com.hungpk.threekingdomtactic.payload.request.StatRequest;
+import com.hungpk.threekingdomtactic.payload.response.stats.StatResponse;
 import com.hungpk.threekingdomtactic.repository.StatRepository;
 import com.hungpk.threekingdomtactic.utils.MessageUtils;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,12 +21,14 @@ public class StatService {
 
     private final ModelMapper modelMapper;
 
-    public List<Stat> getAll() {
-        return statRepository.findAll();
+    public List<StatResponse> getAll() {
+        var entities = statRepository.findAll();
+        return entities.stream().map(e -> modelMapper.map(e, StatResponse.class)).collect(Collectors.toList());
     }
 
-    public Stat findById(Long id) {
-        return statRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
+    public StatResponse findById(Long id) {
+        var entity = statRepository.findById(id).orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        return modelMapper.map(entity, StatResponse.class);
     }
 
     public void create(StatRequest body) {
@@ -34,8 +37,9 @@ public class StatService {
     }
 
     public void update(Long id, StatRequest body) {
-        var entity = statRepository.findById(id).get();
-        entity.setName(body.getName());
+        var entity = statRepository.findById(id).orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        entity = modelMapper.map(body, Stat.class);
+        entity.setId(id);
         statRepository.save(entity);
     }
 

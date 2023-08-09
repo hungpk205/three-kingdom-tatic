@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import com.hungpk.threekingdomtactic.config.AppConfig;
 
+import com.hungpk.threekingdomtactic.enums.StatEnum;
 import lombok.Data;
 
 @Data
@@ -24,7 +25,8 @@ public class HeroStat {
     @ManyToOne(fetch = FetchType.LAZY)
     private Hero hero;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Stat stat;
+    @Column(name = "stat")
+    @Enumerated(EnumType.STRING)
+    private StatEnum stat;
 
 }

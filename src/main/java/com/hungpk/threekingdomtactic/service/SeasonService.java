@@ -36,7 +36,7 @@ public class SeasonService {
     }
 
     public void update(Long id, SeasonRequest body) {
-        var entity = seasonRepository.findById(id).get();
+        seasonRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
         var newEntity = modelMapper.map(body, Season.class);
         newEntity.setId(id);
         seasonRepository.save(newEntity);

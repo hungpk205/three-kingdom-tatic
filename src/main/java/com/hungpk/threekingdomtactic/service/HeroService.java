@@ -58,7 +58,7 @@ public class HeroService {
     }
 
     public void update(Long id, HeroRequest body) {
-        var entity = heroRepository.findById(id).orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
+        heroRepository.findById(id).orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
         var tacticOfficial = tacticRepository.findById(body.getOfficialTactic().getId())
                 .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
         var tacticInherit = tacticRepository.findById(body.getInheritTactic().getId())
@@ -67,7 +67,7 @@ public class HeroService {
                 .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
         var season = seasonRepository.findById(body.getSeason().getId())
                 .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
-        entity = modelMapper.map(body, Hero.class);
+        var entity = modelMapper.map(body, Hero.class);
         entity.setOfficialTactic(tacticOfficial);
         entity.setInheritTactic(tacticInherit);
         entity.setCountry(country);

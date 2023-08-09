@@ -34,11 +34,11 @@ public class AffinityService {
     }
 
     public void update(Long id, AffinityRequest body) {
-        var entity = affinityRepository.findById(id)
+        affinityRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
-        entity = modelMapper.map(body, Affinity.class);
-        entity.setId(id);
-        affinityRepository.save(entity);
+        var newEntity = modelMapper.map(body, Affinity.class);
+        newEntity.setId(id);
+        affinityRepository.save(newEntity);
     }
 
     public void delete(Long id) {

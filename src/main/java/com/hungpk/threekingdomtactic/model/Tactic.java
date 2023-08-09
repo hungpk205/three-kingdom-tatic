@@ -38,14 +38,15 @@ public class Tactic {
     private Integer quantity;
 
     @Column(name = "quality")
-//    @Convert(converter = QualityEnumConverter.class)
+    @Enumerated(EnumType.STRING)
     private QualityEnum quality;
 
     @Column(name = "tactic_type")
-//    @Convert(converter = TacticTypeEnumConverter.class)
+    @Enumerated(EnumType.STRING)
     private TacticTypeEnum tacticType;
 
     @Column(name = "target_type")
+    @Enumerated(EnumType.STRING)
     private TargetTypeEnum targetType;
 
     @Column(name = "change_to_trigger")

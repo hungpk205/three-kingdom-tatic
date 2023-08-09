@@ -39,9 +39,10 @@ public class EffectService {
     }
 
     public void update(Long id, EffectRequest body) {
-        var entity = effectRepository.findById(id)
+        effectRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
-        entity.setName(body.getName());
+        var entity = modelMapper.map(body, Effect.class);
+        entity.setId(id);
         effectRepository.save(entity);
     }
 

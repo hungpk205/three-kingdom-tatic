@@ -37,9 +37,10 @@ public class CountryService {
     }
 
     public void update(Long id, CountryRequest body) {
-        var entity = countryRepository.findById(id).get();
-        entity.setName(body.getName());
-        countryRepository.save(entity);
+        countryRepository.findById(id).orElseThrow(() -> new SystemException(MessageUtils.NOT_FOUND));
+        var newEntity = modelMapper.map(body, Country.class);
+        newEntity.setId(id);
+        countryRepository.save(newEntity);
     }
 
     public void delete(Long id) {

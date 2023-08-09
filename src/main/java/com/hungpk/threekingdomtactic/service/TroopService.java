@@ -39,9 +39,9 @@ public class TroopService {
     }
 
     public void update(Long id, TroopRequest body) {
-        var entity = troopRepository.findById(id)
+        troopRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
-        entity = modelMapper.map(body, Troop.class);
+        var entity = modelMapper.map(body, Troop.class);
         entity.setId(id);
         troopRepository.save(entity);
     }

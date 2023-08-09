@@ -1,7 +1,6 @@
 package com.hungpk.threekingdomtactic.service;
 
 import com.hungpk.threekingdomtactic.config.exception.NotFoundException;
-import com.hungpk.threekingdomtactic.config.exception.SystemException;
 import com.hungpk.threekingdomtactic.model.Tactic;
 import com.hungpk.threekingdomtactic.payload.request.TacticRequest;
 import com.hungpk.threekingdomtactic.payload.response.tactics.TacticResponse;
@@ -44,9 +43,9 @@ public class TacticService {
     }
 
     public void update(Long id, TacticRequest body) {
-        var entity = tacticRepository.findById(id)
+        tacticRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(MessageUtils.NOT_FOUND));
-        entity = modelMapper.map(body, Tactic.class);
+        var entity = modelMapper.map(body, Tactic.class);
         entity.setId(id);
         tacticRepository.save(entity);
     }
